@@ -13,8 +13,11 @@ in
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; ([
     # Platform-agnostic dependencies
+    meslo-lgs-nf
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [
@@ -24,9 +27,32 @@ in
   # Shell configuration
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
     shellAliases = {
       hm-switch = "home-manager switch";
     };
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "p10k-config";
+        src = lib.cleanSource ./zsh; 
+        file = "p10k.zsh";
+      }
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.zsh-autosuggestions;
+        file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+      }
+      {
+        name = "zsh-syntax-highlighting";
+        src = pkgs.zsh-syntax-highlighting;
+        file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
+      }
+    ];
   };
 
   # Git configuration
