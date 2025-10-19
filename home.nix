@@ -26,6 +26,13 @@ in
     # Docker - requires manual Docker Desktop installation on Mac
     docker
     docker-compose
+
+    # Kubernetes tools
+    kubectl
+    kubernetes-helm
+    k3d
+    eksctl
+    skaffold
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [
