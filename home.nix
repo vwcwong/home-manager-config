@@ -36,6 +36,12 @@ in
 
     # AWS CLI
     awscli2
+
+    # Rust tools
+    rustc
+    cargo
+    rust-analyzer
+    rustfmt
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [
