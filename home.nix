@@ -33,6 +33,9 @@ in
     k3d
     eksctl
     skaffold
+
+    # AWS CLI
+    awscli2
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [
