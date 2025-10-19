@@ -16,8 +16,16 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; ([
+    #
     # Platform-agnostic dependencies
+    #
+
+    # Fonts and icons
     meslo-lgs-nf
+
+    # Docker - requires manual Docker Desktop installation on Mac
+    docker
+    docker-compose
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [
