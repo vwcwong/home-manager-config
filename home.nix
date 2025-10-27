@@ -33,6 +33,7 @@ in
     k3d
     eksctl
     skaffold
+    kustomize
 
     # AWS CLI
     awscli2
