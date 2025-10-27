@@ -42,6 +42,9 @@ in
     cargo
     rust-analyzer
     rustfmt
+
+    # Terraform
+    terraform
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [
