@@ -81,6 +81,36 @@ in
         file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
       }
     ];
+    initExtra = ''
+      #
+      # Bind Ctrl+Left/Right for word navigation
+      #
+
+      # Linux terminals (xterm-style, rxvt-style, vt100-style)
+      bindkey "\e[1;5D" backward-word
+      bindkey "\e[5D" backward-word
+      bindkey "\eOD" backward-word
+      bindkey "^[[1;5D" backward-word
+      
+      bindkey "\e[1;5C" forward-word
+      bindkey "\e[5C" forward-word
+      bindkey "\eOC" forward-word
+      bindkey "^[[1;5C" forward-word
+      
+      # Mac terminals - Option+Arrow is standard for word navigation on Mac
+      bindkey "\e[1;3D" backward-word    # Option+Left
+      bindkey "\e[1;3C" forward-word     # Option+Right
+      bindkey "\e\e[D" backward-word    # Alternative Option+Left format
+      bindkey "\e\e[C" forward-word     # Alternative Option+Right format
+      
+      # Mac terminals - Ctrl+Arrow (iTerm2, Terminal.app may need special config)
+      bindkey "^[^[[D" backward-word    # Ctrl+Left (some Mac terminals)
+      bindkey "^[^[[C" forward-word     # Ctrl+Right (some Mac terminals)
+      
+      # Also bind ESC+b and ESC+f for compatibility (standard readline)
+      bindkey "\eb" backward-word
+      bindkey "\ef" forward-word
+    '';
   };
 
   # Git configuration
