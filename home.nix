@@ -46,6 +46,9 @@ in
 
     # Terraform
     terraform
+
+    # AI tools
+    claude-code
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [

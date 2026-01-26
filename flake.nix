@@ -10,7 +10,11 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager }: 
+  inputs.claude-code = {
+    url = "github:sadjow/claude-code-nix";
+  };
+
+  outputs = { self, nixpkgs, home-manager, claude-code }: 
   let
     username = <FILL_IN>;
     isDarwin = <FILL_IN>;
@@ -22,6 +26,7 @@
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           config.allowUnfree = true;
+          overlays = [ claude-code.overlays.default ];
         };
       });
     };
@@ -33,6 +38,7 @@
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;
+          overlays = [ claude-code.overlays.default ];
         };
       });
     };
