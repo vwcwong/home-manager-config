@@ -15,6 +15,7 @@ type(scope): Description
 - `feat`: A new feature
 - `fix`: A bug fix
 - `docs`: Documentation changes
+- `ci`: CI/CD pipeline changes
 - `ai`: AI-related changes
 
 ### Scopes
