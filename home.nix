@@ -60,7 +60,7 @@ in
     enable = true;
     enableCompletion = true;
     shellAliases = {
-      hm-switch = "home-manager switch";
+      hm-switch = "home-manager switch --impure";
     };
     plugins = [
       {

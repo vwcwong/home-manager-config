@@ -16,8 +16,8 @@
 
   outputs = { self, nixpkgs, home-manager, claude-code }: 
   let
-    username = <FILL_IN>;
-    isDarwin = <FILL_IN>;
+    username = builtins.getEnv "USER";
+    isDarwin = builtins.pathExists /Library;
     
     linuxConfig = {
       "${username}" = home-manager.lib.homeManagerConfiguration ({
