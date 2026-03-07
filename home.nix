@@ -49,6 +49,7 @@ in
 
     # AI tools
     claude-code
+    opencode
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [
