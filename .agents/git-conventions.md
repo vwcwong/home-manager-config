@@ -17,6 +17,7 @@ type(scope): Description
 - `docs`: Documentation changes
 - `ci`: CI/CD pipeline changes
 - `ai`: AI-related changes
+- `chore`: Routine maintenance tasks such as dependency upgrades or repository housekeeping
 
 ### Scopes
 
@@ -33,6 +34,7 @@ Scopes indicate the area of the codebase affected:
 - `zsh`: Zsh shell configuration
 - `git`: Git configuration
 - `readme`: README documentation
+- `global`: Repository-wide changes not specific to any one area
 
 #### Multiple Scopes
 
@@ -71,5 +73,6 @@ fix(hm): Resolve package installation error
 ai(hm): Add AI agent documentation
 feat(ai): Add Cursor IDE
 feat(aws,docker,k8s): Add cloud infrastructure tools
+chore(global): Update Flake inputs
 ```
 
