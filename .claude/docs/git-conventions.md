@@ -75,4 +75,3 @@ feat(ai): Add Cursor IDE
 feat(aws,docker,k8s): Add cloud infrastructure tools
 chore(global): Update Flake inputs
 ```
-
