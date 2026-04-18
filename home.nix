@@ -50,6 +50,7 @@ in
     # AI tools
     claude-code
     opencode
+
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
   ] ++ lib.optionals isDarwin [
@@ -115,6 +116,12 @@ in
       bindkey "\eb" backward-word
       bindkey "\ef" forward-word
     '';
+  };
+
+  # Environment management
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   # Git configuration
