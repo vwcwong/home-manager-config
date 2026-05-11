@@ -23,7 +23,7 @@
   let
     username = builtins.getEnv "USER";
     isDarwin = builtins.pathExists /Library;
-    
+
     linuxConfig = {
       "${username}" = home-manager.lib.homeManagerConfiguration ({
         modules = [ ./home.nix ];

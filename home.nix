@@ -75,7 +75,7 @@ in
       }
       {
         name = "p10k-config";
-        src = lib.cleanSource ./zsh; 
+        src = lib.cleanSource ./zsh;
         file = "p10k.zsh";
       }
       {
@@ -99,22 +99,22 @@ in
       bindkey "\e[5D" backward-word
       bindkey "\eOD" backward-word
       bindkey "^[[1;5D" backward-word
-      
+
       bindkey "\e[1;5C" forward-word
       bindkey "\e[5C" forward-word
       bindkey "\eOC" forward-word
       bindkey "^[[1;5C" forward-word
-      
+
       # Mac terminals - Option+Arrow is standard for word navigation on Mac
       bindkey "\e[1;3D" backward-word    # Option+Left
       bindkey "\e[1;3C" forward-word     # Option+Right
       bindkey "\e\e[D" backward-word    # Alternative Option+Left format
       bindkey "\e\e[C" forward-word     # Alternative Option+Right format
-      
+
       # Mac terminals - Ctrl+Arrow (iTerm2, Terminal.app may need special config)
       bindkey "^[^[[D" backward-word    # Ctrl+Left (some Mac terminals)
       bindkey "^[^[[C" forward-word     # Ctrl+Right (some Mac terminals)
-      
+
       # Also bind ESC+b and ESC+f for compatibility (standard readline)
       bindkey "\eb" backward-word
       bindkey "\ef" forward-word
@@ -148,23 +148,23 @@ in
     prefix = "C-a";
     mouse = true;
     keyMode = "vi";
-    
+
     extraConfig = ''
       # Vim-style pane navigation
       bind h select-pane -L
       bind j select-pane -D
       bind k select-pane -U
       bind l select-pane -R
-      
+
       # Easier splitting
       bind | split-window -h
       bind - split-window -v
       unbind '"'
       unbind %
-      
+
       # Reload config
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
-      
+
       # Vim copy mode
       setw -g mode-keys vi
       bind-key -T copy-mode-vi v send-keys -X begin-selection
