@@ -63,6 +63,7 @@ in
     enableCompletion = true;
     shellAliases = {
       hm-switch = "home-manager switch --impure";
+      hm-pull = "git -C ~/.config/home-manager pull";
       zed = "zeditor";
     };
     plugins = [
