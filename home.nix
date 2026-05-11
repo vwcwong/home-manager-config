@@ -5,6 +5,14 @@ let
   unsupported = builtins.abort "Unsupported platform";
 in
 {
+  imports = [
+    ./modules/direnv.nix
+    ./modules/git.nix
+    ./modules/tmux.nix
+    ./modules/zed.nix
+    ./modules/zsh.nix
+  ];
+
   home.username = username;
   home.homeDirectory =
     if isLinux then "/home/${username}" else
@@ -57,128 +65,4 @@ in
   ] ++ lib.optionals isDarwin [
     # Mac-only dependencies
   ]);
-
-  # Shell configuration
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    shellAliases = {
-      hm-switch = "home-manager switch --impure";
-      hm-pull = "git -C ~/.config/home-manager pull";
-      zed = if isLinux then "nixGL zeditor" else "zeditor";
-    };
-    plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "p10k-config";
-        src = lib.cleanSource ./zsh;
-        file = "p10k.zsh";
-      }
-      {
-        name = "zsh-autosuggestions";
-        src = pkgs.zsh-autosuggestions;
-        file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
-      }
-      {
-        name = "zsh-syntax-highlighting";
-        src = pkgs.zsh-syntax-highlighting;
-        file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
-      }
-    ];
-    initExtra = ''
-      #
-      # Bind Ctrl+Left/Right for word navigation
-      #
-
-      # Linux terminals (xterm-style, rxvt-style, vt100-style)
-      bindkey "\e[1;5D" backward-word
-      bindkey "\e[5D" backward-word
-      bindkey "\eOD" backward-word
-      bindkey "^[[1;5D" backward-word
-
-      bindkey "\e[1;5C" forward-word
-      bindkey "\e[5C" forward-word
-      bindkey "\eOC" forward-word
-      bindkey "^[[1;5C" forward-word
-
-      # Mac terminals - Option+Arrow is standard for word navigation on Mac
-      bindkey "\e[1;3D" backward-word    # Option+Left
-      bindkey "\e[1;3C" forward-word     # Option+Right
-      bindkey "\e\e[D" backward-word    # Alternative Option+Left format
-      bindkey "\e\e[C" forward-word     # Alternative Option+Right format
-
-      # Mac terminals - Ctrl+Arrow (iTerm2, Terminal.app may need special config)
-      bindkey "^[^[[D" backward-word    # Ctrl+Left (some Mac terminals)
-      bindkey "^[^[[C" forward-word     # Ctrl+Right (some Mac terminals)
-
-      # Also bind ESC+b and ESC+f for compatibility (standard readline)
-      bindkey "\eb" backward-word
-      bindkey "\ef" forward-word
-    '';
-  };
-
-  # Environment management
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  # Git configuration
-  programs.git = {
-    enable = true;
-    userEmail = "vincent@vwong.dev";
-    userName = "Vincent Wong";
-    extraConfig = {
-      init.defaultBranch = "main";
-      push.autoSetupRemote = true;
-    };
-  };
-
-  programs.zed-editor = {
-    enable = true;
-    extensions = [ "java" ];
-    userSettings = {
-      lsp = {
-        jdtls = {
-          binary = {
-            path = "${pkgs.jdt-language-server}/bin/jdtls";
-          };
-        };
-      };
-    };
-  };
-
-  # Tmux configuration
-  programs.tmux = {
-    enable = true;
-    prefix = "C-a";
-    mouse = true;
-    keyMode = "vi";
-
-    extraConfig = ''
-      # Vim-style pane navigation
-      bind h select-pane -L
-      bind j select-pane -D
-      bind k select-pane -U
-      bind l select-pane -R
-
-      # Easier splitting
-      bind | split-window -h
-      bind - split-window -v
-      unbind '"'
-      unbind %
-
-      # Reload config
-      bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
-
-      # Vim copy mode
-      setw -g mode-keys vi
-      bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-    '';
-  };
 }
