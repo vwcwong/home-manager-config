@@ -14,7 +14,12 @@
     url = "github:sadjow/claude-code-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, claude-code }: 
+  inputs.nixgl = {
+    url = "github:nix-community/nixGL";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { self, nixpkgs, home-manager, claude-code, nixgl }:
   let
     username = builtins.getEnv "USER";
     isDarwin = builtins.pathExists /Library;
@@ -26,11 +31,11 @@
         pkgs = import nixpkgs {
           system = "x86_64-linux";
           config.allowUnfree = true;
-          overlays = [ claude-code.overlays.default ];
+          overlays = [ claude-code.overlays.default nixgl.overlay ];
         };
       });
     };
-    
+
     macConfig = {
       "${username}" = home-manager.lib.homeManagerConfiguration ({
         modules = [ ./home.nix ];

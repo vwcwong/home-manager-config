@@ -53,6 +53,7 @@ in
 
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
+    pkgs.nixgl.auto.nixGLDefault
   ] ++ lib.optionals isDarwin [
     # Mac-only dependencies
   ]);
@@ -64,7 +65,7 @@ in
     shellAliases = {
       hm-switch = "home-manager switch --impure";
       hm-pull = "git -C ~/.config/home-manager pull";
-      zed = "zeditor";
+      zed = if isLinux then "nixGL zeditor" else "zeditor";
     };
     plugins = [
       {
