@@ -63,6 +63,7 @@ in
     enableCompletion = true;
     shellAliases = {
       hm-switch = "home-manager switch --impure";
+      zed = "zeditor";
     };
     plugins = [
       {
@@ -133,6 +134,10 @@ in
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
     };
+  };
+
+  programs.zed-editor = {
+    enable = true;
   };
 
   # Tmux configuration
