@@ -2,7 +2,7 @@
 {
   programs.zed-editor = {
     enable = true;
-    extensions = [ "java" ];
+    extensions = [ "java" "nix" ];
     userSettings = {
       ui_font_size = 12;
       ui_font_family = "MesloLGS NF";
@@ -12,6 +12,11 @@
         jdtls = {
           binary = {
             path = "${pkgs.jdt-language-server}/bin/jdtls";
+          };
+        };
+        nixd = {
+          binary = {
+            path = "${pkgs.nixd}/bin/nixd";
           };
         };
       };
