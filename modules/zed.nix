@@ -2,7 +2,7 @@
 {
   programs.zed-editor = {
     enable = true;
-    extensions = [ "java" "nix" ];
+    extensions = [ "java" "nix" "python" ];
     userSettings = {
       ui_font_size = 12;
       ui_font_family = "MesloLGS NF";
@@ -17,6 +17,12 @@
         nixd = {
           binary = {
             path = "${pkgs.nixd}/bin/nixd";
+          };
+        };
+        pyright = {
+          binary = {
+            path = "${pkgs.pyright}/bin/pyright-langserver";
+            arguments = [ "--stdio" ];
           };
         };
       };
