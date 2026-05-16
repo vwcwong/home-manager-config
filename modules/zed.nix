@@ -8,6 +8,9 @@
       ui_font_family = "MesloLGS NF";
       buffer_font_size = 11;
       buffer_font_family = "MesloLGS NF";
+      terminal = {
+        dock = "right";
+      };
       lsp = {
         jdtls = {
           binary = {
