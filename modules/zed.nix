@@ -8,6 +8,7 @@
       ui_font_family = "MesloLGS NF";
       buffer_font_size = 11;
       buffer_font_family = "MesloLGS NF";
+      cli_default_open_behavior = "existing_window";
       terminal = {
         dock = "right";
       };
