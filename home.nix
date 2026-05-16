@@ -6,6 +6,7 @@ let
 in
 {
   imports = [
+    ./modules/claude.nix
     ./modules/direnv.nix
     ./modules/git.nix
     ./modules/tmux.nix
