@@ -8,7 +8,7 @@ in
     enableCompletion = true;
     shellAliases = {
       hm-switch = "home-manager switch --impure";
-      hm-pull = "git -C ~/.config/home-manager pull";
+      hm-pull = "git -C ~/.config/home-manager fetch && (git -C ~/.config/home-manager merge --ff-only @{u} || git -C ~/.config/home-manager reset --hard @{u})";
       zed = if isLinux then "nixGL zeditor" else "zeditor";
     };
     plugins = [
