@@ -2,9 +2,9 @@
 {
   programs.git = {
     enable = true;
-    userEmail = "vincent@vwong.dev";
-    userName = "Vincent Wong";
-    extraConfig = {
+    settings = {
+      user.email = "vincent@vwong.dev";
+      user.name = "Vincent Wong";
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
     };
