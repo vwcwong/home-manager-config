@@ -3,6 +3,15 @@
   home.file.".claude/CLAUDE.md".text = ''
     # User Instructions
 
+    ## Communication Style
+
+    Be concise. Default to dot points over prose:
+
+    - Prefer short bullet lists to paragraphs, including for explanations and summaries.
+    - Skip preamble, restating the question, and trailing summaries.
+    - Only use full prose when a bullet would break the meaning (e.g. a single short
+      answer, or code/command output).
+
     ## Worktree Workflow
 
     Before making any code changes, use `EnterWorktree` with a short descriptive name
