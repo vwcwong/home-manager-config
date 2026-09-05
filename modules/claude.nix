@@ -30,5 +30,33 @@
     - **Agents**: spawning an Agent with `isolation: "worktree"` is for fully delegated
       tasks, not inline work. For interactive sessions where you make changes yourself,
       always use `EnterWorktree` directly.
+
+    ## Development Preferences
+
+    These are defaults, not rules. Existing conventions in the codebase always win —
+    match surrounding style, naming, structure, and tooling even where it contradicts
+    the below. Apply these only when the codebase is silent, or for brand-new projects.
+
+    - **Commits**: split work into a sensible sequence of commits rather than one big
+      commit. Keep refactoring/formatting changes in separate commits from
+      functionality changes — never mix the two in one commit. Use conventional
+      commit format:
+
+      ```
+      type(scope): Description
+      ```
+
+      - Types: `feat`, `fix`, `docs`, `ci`, `chore` (routine maintenance, dependency
+        bumps, housekeeping) — add more only if the project clearly needs them.
+      - Scopes: define ones relevant to the project's own areas (e.g. `api`, `auth`,
+        `cli`) rather than reusing scopes from unrelated projects. Multiple scopes are
+        comma-separated and alphabetical; use a `global`/broad scope instead if a change
+        touches more than ~3 areas.
+      - Description: capitalised, imperative mood ("Add" not "Added"), no trailing period.
+      - Example: `feat(auth): Add refresh token rotation`
+    - **Comments**: minimise comments in favour of self-documenting code (clear names,
+      small functions). Only comment where the *why* isn't obvious from the code itself.
+    - **Tests**: minimise tests to those that meaningfully increase confidence in the
+      code. Don't write tests for practically impossible cases or just for coverage.
   '';
 }
