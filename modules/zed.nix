@@ -37,6 +37,9 @@ in
       terminal = {
         dock = "right";
       };
+      project_panel = {
+        dock = "left";
+      };
       lsp = {
         jdtls = {
           binary = {
