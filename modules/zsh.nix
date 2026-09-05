@@ -1,7 +1,4 @@
 { pkgs, lib, ... }:
-let
-  isLinux = pkgs.stdenv.hostPlatform.isLinux;
-in
 {
   programs.zsh = {
     enable = true;
@@ -9,7 +6,7 @@ in
     shellAliases = {
       hm-switch = "home-manager switch --impure";
       hm-pull = "git -C ~/.config/home-manager fetch && (git -C ~/.config/home-manager merge --ff-only @{u} || git -C ~/.config/home-manager reset --hard @{u})";
-      zed = if isLinux then "nixGL zeditor" else "zeditor";
+      zed = "zeditor";
     };
     plugins = [
       {
