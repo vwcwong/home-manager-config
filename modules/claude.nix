@@ -1,4 +1,28 @@
-{ ... }:
+{ config, pkgs, lib, ... }:
+let
+  # Hooks are spawned by Claude Code with a minimal environment, so everything
+  # they call has to be pinned into the store rather than found on PATH.
+  # writeShellApplication also runs shellcheck at build time, which is why the
+  # scripts live in their own files rather than inline here.
+  mkHook = name: runtimeInputs: pkgs.writeShellApplication {
+    inherit name runtimeInputs;
+    text = builtins.readFile (./claude/hooks + "/${name}.sh");
+  };
+
+  extractConventions = mkHook "extract-conventions" [
+    pkgs.jq
+    pkgs.gnugrep
+    pkgs.gnused
+    pkgs.claude-code
+  ];
+
+  conventionsNudge = mkHook "conventions-nudge" [
+    pkgs.jq
+    pkgs.gnugrep
+  ];
+
+  settingsPath = "${config.home.homeDirectory}/.claude/settings.json";
+in
 {
   home.file.".claude/CLAUDE.md".text = ''
     # User Instructions
@@ -58,5 +82,31 @@
       small functions). Only comment where the *why* isn't obvious from the code itself.
     - **Tests**: minimise tests to those that meaningfully increase confidence in the
       code. Don't write tests for practically impossible cases or just for coverage.
+  '';
+
+  home.file.".claude/prompts/extract-conventions.md".source =
+    ./claude/prompts/extract-conventions.md;
+
+  # ~/.claude/settings.json is written by Claude Code itself (/model persists
+  # the default model there), so it cannot be a read-only store symlink the way
+  # CLAUDE.md is. Merge the hook registrations into whatever is already on disk
+  # instead, keyed on script name so re-activation replaces rather than stacks.
+  home.activation.claudeHooks = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ -z "$DRY_RUN_CMD" ]; then
+      mkdir -p "$(dirname "${settingsPath}")"
+      [ -f "${settingsPath}" ] || echo '{}' > "${settingsPath}"
+
+      # Via a temp file so an interrupted activation cannot truncate settings.
+      if ${pkgs.jq}/bin/jq \
+          --arg extract "${extractConventions}/bin/extract-conventions" \
+          --arg nudge "${conventionsNudge}/bin/conventions-nudge" \
+          -f ${./claude/lib/merge-hooks.jq} \
+          "${settingsPath}" > "${settingsPath}.hm-tmp"; then
+        mv "${settingsPath}.hm-tmp" "${settingsPath}"
+      else
+        rm -f "${settingsPath}.hm-tmp"
+        echo "claude.nix: failed to register hooks in ${settingsPath}" >&2
+      fi
+    fi
   '';
 }
