@@ -24,7 +24,7 @@ type(scope): Description
 Scopes indicate the area of the codebase affected:
 
 - `ai`: AI-related tools
-- `claude`: Claude Code configurationgi
+- `claude`: Claude Code configuration
 - `keybinds`: Keyboard bindings configuration
 - `hm`: Home Manager configuration
 - `k8s`: Kubernetes-related tools
