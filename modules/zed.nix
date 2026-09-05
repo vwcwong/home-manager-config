@@ -29,6 +29,7 @@ in
     package = lib.mkIf isLinux zed-editor-nvidia;
     extensions = [ "java" "nix" "python" ];
     userSettings = {
+      disable_ai = true;
       ui_font_size = 12;
       ui_font_family = "MesloLGS NF";
       buffer_font_size = 11;
