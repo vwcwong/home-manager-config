@@ -64,6 +64,10 @@ in
     match surrounding style, naming, structure, and tooling even where it contradicts
     the below. Apply these only when the codebase is silent, or for brand-new projects.
 
+    - **Dependencies**: hand-roll small, routine work. Before a large implementation
+      of a standard problem (auth, parsing, retries, scheduling, serialisation),
+      investigate established libraries first and report what you found — pick a
+      well-maintained one that fits, and only hand-roll when none does.
     - **Commits**: split work into a sensible sequence of commits rather than one big
       commit. Keep refactoring/formatting changes in separate commits from
       functionality changes — never mix the two in one commit. Use conventional
