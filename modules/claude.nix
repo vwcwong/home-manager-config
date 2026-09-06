@@ -81,6 +81,16 @@ in
         touches more than ~3 areas.
       - Description: capitalised, imperative mood ("Add" not "Added"), no trailing period.
       - Example: `feat(auth): Add refresh token rotation`
+    - **Commit dates**: keep the author date and the commit date exactly identical.
+      When amending a commit, fast-forward the author date to the new commit date by
+      pinning both to a single timestamp:
+
+      ```
+      D="$(date -Iseconds)" && GIT_COMMITTER_DATE="$D" git commit --amend --date="$D"
+      ```
+
+      Plain `--amend` leaves the old author date behind, and `--date=now` on its own
+      can land a second off the committer timestamp.
     - **Comments**: minimise comments in favour of self-documenting code (clear names,
       small functions). Only comment where the *why* isn't obvious from the code itself.
     - **Tests**: minimise tests to those that meaningfully increase confidence in the
