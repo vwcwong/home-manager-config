@@ -85,6 +85,10 @@ in
       small functions). Only comment where the *why* isn't obvious from the code itself.
     - **Tests**: minimise tests to those that meaningfully increase confidence in the
       code. Don't write tests for practically impossible cases or just for coverage.
+    - **Merging**: squash merge pull requests. Rewrite the squashed message to follow
+      the commit format above, dropping the PR number the merge UI appends. A PR that
+      can't be sensibly squashed into one commit — mixed types, or too many scopes —
+      should have been split into separate PRs instead.
   '';
 
   # Claude Code only reads settings.json (it rewrites ~/.claude.json instead),
