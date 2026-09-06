@@ -60,6 +60,8 @@ in
     claude-code
     opencode
 
+    # Version control tools
+    gh
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
     pkgs.nixgl.auto.nixGLDefault
