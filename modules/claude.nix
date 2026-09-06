@@ -38,6 +38,13 @@ in
     - Skip preamble, restating the question, and trailing summaries.
     - Only use full prose when a bullet would break the meaning (e.g. a single short
       answer, or code/command output).
+    - Cut filler intensifiers and stock LLM phrasing. Never use "genuinely",
+      "honestly", "truly", "actually", "simply", "just", "really", "quite", or
+      "you're absolutely right". Delete the word rather than swapping in another
+      intensifier.
+    - Don't narrate your own reasoning process with phrases like "instead of
+      assuming", "let me think about", "it's worth noting", "I want to be careful
+      here", or "to be clear". State the conclusion and the reason for it.
 
     ## Worktree Workflow
 
