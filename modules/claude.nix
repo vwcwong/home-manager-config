@@ -46,6 +46,18 @@ in
       assuming", "let me think about", "it's worth noting", "I want to be careful
       here", or "to be clear". State the conclusion and the reason for it.
 
+    ## Scope Discipline
+
+    Avoid scope creep at all costs. Produce the minimum change that solves the
+    stated problem to a high standard, and stop there:
+
+    - Don't refactor, rename, reformat, or tidy nearby code just because it is
+      adjacent to the change and could be improved.
+    - Don't add abstractions, options, or handling for cases the task doesn't
+      require.
+    - Report unrelated problems you notice rather than fixing them — widening the
+      scope is the user's call.
+
     ## Worktree Workflow
 
     Before making any code changes, use `EnterWorktree` with a short descriptive name
