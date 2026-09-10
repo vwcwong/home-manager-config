@@ -60,19 +60,33 @@ in
 
     ## Worktree Workflow
 
-    Before making any code changes, use `EnterWorktree` with a short descriptive name
-    (e.g., `fix-auth`, `add-dark-mode`). Do this as soon as the user confirms they want
-    implementation to proceed — not after exploring or planning.
+    Use `EnterWorktree` with a short descriptive name (e.g., `fix-auth`, `add-dark-mode`)
+    before making code changes that warrant isolation. Do this as soon as the user
+    confirms they want implementation to proceed — not after exploring or planning.
 
     - **Naming**: use the feature/fix name in kebab-case. This makes `git worktree list`
       readable and the branch name meaningful.
-    - **Exception**: skip the worktree for pure read-only tasks (exploration, explanation)
-      or single-file trivial fixes where the user explicitly says to edit in place.
+    - **When to use**: worktrees are for work needing isolation — parallel tasks, risky
+      refactors, or anything with a long build/test cycle. Skip them for pure read-only
+      tasks (exploration, explanation), and for single-file edits where a branch in place
+      is enough or the user says to edit in place.
+    - **Base**: create the worktree from a freshly fetched `origin/main`. If it outlives a
+      merge to main, rebase onto main before opening the PR.
     - **After implementation**: commit changes inside the worktree, then either open a PR
       or ask the user how they want to merge. Do not merge manually without asking.
     - **Exiting**: use `ExitWorktree` with `action: "keep"` when work is done or paused
       (preserves the branch for review/PR). Use `action: "remove"` only if the user
-      explicitly abandons the work.
+      explicitly abandons the work. On `keep`, either push the branch or say plainly that
+      it is local-only.
+    - **Cleanup**: once the PR is squash-merged, remove the worktree and delete the branch
+      locally and on the remote. Squash merges leave no merge ancestry, so
+      `git branch --merged` never reports these branches — test with `git cherry main
+      <branch>` instead, where only `-` lines means it landed.
+    - **Stale check**: at the start of a session in a repo with worktrees, run
+      `git worktree list` and report any whose branch has landed (removable) or holds
+      unpushed commits (stale).
+    - **Ignore**: keep `.claude/worktrees/` out of version control via `.gitignore` or
+      `.git/info/exclude`, so worktrees don't surface as untracked noise.
     - **Agents**: spawning an Agent with `isolation: "worktree"` is for fully delegated
       tasks, not inline work. For interactive sessions where you make changes yourself,
       always use `EnterWorktree` directly.
