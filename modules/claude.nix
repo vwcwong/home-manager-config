@@ -60,14 +60,26 @@ in
 
     ## Worktree Workflow
 
-    Before making any code changes, use `EnterWorktree` with a short descriptive name
-    (e.g., `fix-auth`, `add-dark-mode`). Do this as soon as the user confirms they want
-    implementation to proceed — not after exploring or planning.
+    Default to editing in place. Use `EnterWorktree` only when the work is
+    isolation-worthy — keeping a body of work off the main checkout, not a
+    ceremony for every edit.
 
-    - **Naming**: use the feature/fix name in kebab-case. This makes `git worktree list`
-      readable and the branch name meaningful.
-    - **Exception**: skip the worktree for pure read-only tasks (exploration, explanation)
-      or single-file trivial fixes where the user explicitly says to edit in place.
+    - **Use a worktree when** any of these hold: the change spans several files or
+      several commits; it is a feature or refactor headed for its own PR; it is
+      experimental and may be thrown away; or the main checkout has to stay clean
+      while the work is in progress.
+    - **Edit in place when**: the task is read-only; the change is small and
+      contained (a config tweak, a typo, a one-file fix); the user is iterating on
+      something they need live in their own checkout; or the session is already on
+      a suitable feature branch.
+    - **When unsure**: start in place. If the change grows past a couple of files,
+      or the user asks for a PR, say so and move to a worktree before going further.
+    - **Timing**: enter the worktree as soon as the user confirms implementation
+      should proceed — not after exploring or planning.
+    - **Naming**: use the feature/fix name in kebab-case (e.g. `fix-auth`,
+      `add-dark-mode`). This makes `git worktree list` readable and the branch name
+      meaningful.
+    - **In-place commits**: branch first if committing in place on the default branch.
     - **After implementation**: commit changes inside the worktree, then either open a PR
       or ask the user how they want to merge. Do not merge manually without asking.
     - **Exiting**: use `ExitWorktree` with `action: "keep"` when work is done or paused
@@ -75,7 +87,7 @@ in
       explicitly abandons the work.
     - **Agents**: spawning an Agent with `isolation: "worktree"` is for fully delegated
       tasks, not inline work. For interactive sessions where you make changes yourself,
-      always use `EnterWorktree` directly.
+      use `EnterWorktree` directly.
 
     ## Development Preferences
 
