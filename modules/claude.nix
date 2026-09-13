@@ -126,7 +126,10 @@ in
         comma-separated and alphabetical; use a `global`/broad scope instead if a change
         touches more than ~3 areas.
       - Description: capitalised, imperative mood ("Add" not "Added"), no trailing period.
-      - Example: `feat(auth): Add refresh token rotation`
+        Write it in plain English: avoid identifiers, file paths, flags, and other
+        code-like terms unless plain wording would lose the meaning.
+      - Example: `feat(auth): Add refresh token rotation`, not
+        `feat(auth): Add rotateRefreshToken() to auth/tokens.ts`
     - **Commit dates**: keep the author date and the commit date exactly identical.
       When amending a commit, fast-forward the author date to the new commit date by
       pinning both to a single timestamp:

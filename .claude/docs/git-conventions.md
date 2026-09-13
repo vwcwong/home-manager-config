@@ -52,6 +52,8 @@ Example: `feat(aws, docker, k8s): Add cloud infrastructure tools`
 - Use imperative mood ("Add" not "Added" or "Adds")
 - No period at the end
 - Keep it concise and descriptive
+- Write in plain English: avoid identifiers, file paths, flags, and other code-like
+  terms unless plain wording would lose the meaning
 
 ## Examples
 
