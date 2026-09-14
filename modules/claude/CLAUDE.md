@@ -13,6 +13,9 @@ Be concise. Default to dot points over prose:
   substitution of a near-synonym. Words that rarely survive: "genuinely",
   "honestly", "truly", "actually", "simply", "just", "really", "quite",
   "clearly", "essentially", "of course", "that said", "it's worth noting".
+- **Drop articles.** Cut "a", "an", and "the" where the line still reads
+  properly — bullet points and headings especially. Keep them where removal
+  would make a full sentence read as broken English.
 - **No negative-space framing.** Say what is true rather than what isn't. Drop
   "rather than X", "instead of X", "not X, but Y", "X, not Y" unless X is a
   real alternative the user raised or is actively deciding between.
