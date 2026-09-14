@@ -17,6 +17,7 @@ type(scope): Description
 - `docs`: Documentation changes
 - `ci`: CI/CD pipeline changes
 - `ai`: AI-related changes
+- `refactor`: A code change that does not alter behaviour
 - `chore`: Routine maintenance tasks such as dependency upgrades or repository housekeeping
 
 ### Scopes
