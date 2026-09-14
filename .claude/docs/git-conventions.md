@@ -55,6 +55,7 @@ Example: `feat(aws, docker, k8s): Add cloud infrastructure tools`
 - Keep it concise and descriptive
 - Write in plain English: avoid identifiers, file paths, flags, and other code-like
   terms unless plain wording would lose the meaning
+- Drop articles where the description still reads properly ("Remove build cache")
 
 ## Examples
 

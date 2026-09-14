@@ -98,6 +98,7 @@ the below. Apply these only when the codebase is silent, or for brand-new projec
   - Description: capitalised, imperative mood ("Add" not "Added"), no trailing period.
     Write it in plain English: avoid identifiers, file paths, flags, and other
     code-like terms unless plain wording would lose the meaning.
+    Drop articles where the description still reads properly.
   - Example: `feat(auth): Add refresh token rotation`, not
     `feat(auth): Add rotateRefreshToken() to auth/tokens.ts`
 - **Commit dates**: keep the author date and the commit date exactly identical.
