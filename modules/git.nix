@@ -8,5 +8,9 @@
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
     };
+    ignores = [
+      "**/.claude/settings.local.json"
+      "**/.claude/worktrees/"
+    ];
   };
 }
