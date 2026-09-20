@@ -27,14 +27,14 @@ let
   ];
 in
 {
-  home.file.".claude/CLAUDE.md".source = ./claude/CLAUDE.md;
-
   # Claude Code only reads settings.json (it rewrites ~/.claude.json instead),
   # so nix can own it outright.
   programs.claude-code = {
     enable = true;
 
     package = null; # already in home.packages
+
+    context = ./claude/CLAUDE.md;
 
     settings = {
       model = "opus";
