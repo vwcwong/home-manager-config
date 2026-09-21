@@ -38,6 +38,7 @@ in
 
     settings = {
       model = "opus";
+      outputStyle = "Concise";
       theme = "dark";
       agentPushNotifEnabled = true;
 
