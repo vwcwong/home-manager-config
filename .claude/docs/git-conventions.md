@@ -75,7 +75,7 @@ feat(git): Add Git configuration
 docs(readme): Add installation instructions
 feat(hm): Add base configuration
 fix(hm): Resolve package installation error
-ai(hm): Add AI agent documentation
+ai(global): Add initial agent context files
 feat(ai): Add Cursor IDE
 feat(aws,docker,k8s): Add cloud infrastructure tools
 chore(global): Update Flake inputs
