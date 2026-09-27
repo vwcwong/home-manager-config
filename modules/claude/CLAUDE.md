@@ -114,6 +114,10 @@ the below. Apply these only when the codebase is silent, or for brand-new projec
 
   Plain `--amend` leaves the old author date behind, and `--date=now` on its own
   can land a second off the committer timestamp.
+
+  When rebasing, keep each commit's original date with
+  `git rebase --committer-date-is-author-date`. Plain rebase stamps every
+  replayed commit with the current time as its commit date.
 - **Comments**: minimise comments in favour of self-documenting code (clear names,
   small functions). Only comment where the *why* isn't obvious from the code itself.
 - **Tests**: minimise tests to those that meaningfully increase confidence in the
