@@ -53,8 +53,8 @@ in
     rust-analyzer
     rustfmt
 
-    # Terraform
-    terraform
+    # OpenTofu: Terraform is unfree, so uncached and compiled on every update
+    opentofu
 
     # AI tools
     claude-code
