@@ -27,7 +27,7 @@ in
   programs.zed-editor = {
     enable = true;
     package = lib.mkIf isLinux zed-editor-nvidia;
-    extensions = [ "java" "nix" "python" ];
+    extensions = [ "dockerfile" "java" "nix" "python" ];
     userSettings = {
       disable_ai = true;
       ui_font_size = 12;
