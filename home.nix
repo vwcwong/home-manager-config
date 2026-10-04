@@ -64,6 +64,9 @@ in
 
     # Version control tools
     gh
+
+    # Miscellaneous
+    gnumake
   ] ++ lib.optionals isLinux [
     # Linux-only dependencies
     pkgs.nixgl.auto.nixGLDefault
