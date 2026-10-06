@@ -12,6 +12,25 @@ let
   #
   # Bypass nixGL for Zed entirely and point it straight at the host's own
   # NVIDIA Vulkan driver and ICD instead.
+  #
+  # The driver needs other host libraries too, but the host's glibc is older
+  # than Nix's and must not shadow it, so link everything except glibc into a
+  # runtime directory. The build sandbox can't see /usr/lib, so this happens
+  # at launch.
+  linkHostLibs = ''
+    hostLibDir="''${XDG_RUNTIME_DIR:-/tmp}/zed-host-libs"
+    mkdir -p "$hostLibDir"
+    hostLibs=()
+    for lib in /usr/lib/x86_64-linux-gnu/*.so*; do
+      case "''${lib##*/}" in
+        ld-linux*|libc.so*|libm.so*|libmvec.so*|libdl.so*|libpthread.so*|librt.so*|libresolv.so*|libutil.so*|libanl.so*|libnsl.so*|libBrokenLocale.so*|libnss_*|libthread_db.so*|libc_malloc_debug.so*|libmemusage.so|libpcprofile.so) ;;
+        *) hostLibs+=("$lib") ;;
+      esac
+    done
+    ln -sf "''${hostLibs[@]}" "$hostLibDir"/
+    export LD_LIBRARY_PATH="$hostLibDir''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+  '';
+
   zed-editor-nvidia = pkgs.symlinkJoin {
     name = "zed-editor-nvidia";
     paths = [ pkgs.zed-editor ];
@@ -19,7 +38,7 @@ let
     postBuild = ''
       wrapProgram $out/bin/zeditor \
         --set VK_ICD_FILENAMES /usr/share/vulkan/icd.d/nvidia_icd.json \
-        --prefix LD_LIBRARY_PATH : /usr/lib/x86_64-linux-gnu
+        --run ${lib.escapeShellArg linkHostLibs}
     '';
   };
 in
