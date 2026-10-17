@@ -30,7 +30,7 @@
         file = "share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh";
       }
     ];
-    initExtra = ''
+    initContent = ''
       #
       # Bind Ctrl+Left/Right for word navigation
       #
