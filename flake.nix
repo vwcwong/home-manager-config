@@ -11,7 +11,8 @@
   inputs.claude-code.url = "github:sadjow/claude-code-nix";
 
   inputs.nixgl = {
-    url = "github:nix-community/nixGL";
+    # Upstream still uses pcre, removed from nixpkgs; revert once nix-community/nixGL#227 merges
+    url = "github:happy-dude/nixGL/pcre2grep";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
