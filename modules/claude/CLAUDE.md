@@ -128,3 +128,8 @@ the below. Apply these only when the codebase is silent, or for brand-new projec
   the commit format above, dropping the PR number the merge UI appends. A PR that
   can't be sensibly squashed into one commit — mixed types, or too many scopes —
   should have been split into separate PRs instead.
+
+  Before squashing, check whether a fast-forward merge would keep commit
+  timestamps linear: branch sits directly on top of the base branch, and each
+  commit's date is later than its parent's. If so, suggest fast-forwarding
+  instead and let the user choose.
