@@ -92,8 +92,10 @@ the below. Apply these only when the codebase is silent, or for brand-new projec
   type(scope): Description
   ```
 
-  - Types: `feat`, `fix`, `docs`, `ci`, `chore` (routine maintenance, dependency
-    bumps, housekeeping) — add more only if the project clearly needs them.
+  - Types: `feat`, `fix`, `docs`, `ci`, `build` (build system or tooling
+    configuration, where it sits apart from the product code), `chore` (routine
+    maintenance, dependency bumps, housekeeping) — add more only if the project
+    clearly needs them.
   - Scopes: define ones relevant to the project's own areas (e.g. `api`, `auth`,
     `cli`) rather than reusing scopes from unrelated projects. Multiple scopes are
     comma-separated and alphabetical; use a `global`/broad scope instead if a change
