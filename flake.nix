@@ -19,13 +19,14 @@
   outputs = { nixpkgs, home-manager, claude-code, nixgl, ... }:
   let
     username = builtins.getEnv "USER";
-    isDarwin = builtins.pathExists /Library;
+    system = builtins.currentSystem;
+    isDarwin = nixpkgs.lib.hasSuffix "darwin" system;
   in {
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
       modules = [ ./home.nix ];
       extraSpecialArgs = { inherit username; };
       pkgs = import nixpkgs {
-        system = if isDarwin then "aarch64-darwin" else "x86_64-linux";
+        inherit system;
         config.allowUnfree = true;
         overlays = [ claude-code.overlays.default ]
           ++ nixpkgs.lib.optional (!isDarwin) nixgl.overlay;
