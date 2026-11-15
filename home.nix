@@ -60,7 +60,6 @@ in
 
     # AI tools
     claude-code
-    opencode
 
     # Version control tools
     gh
