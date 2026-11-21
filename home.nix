@@ -11,6 +11,7 @@ in
     ./modules/docker.nix
     ./modules/docker.nix
     ./modules/git.nix
+    ./modules/neovim.nix
     ./modules/tmux.nix
     ./modules/zed.nix
     ./modules/zsh.nix
