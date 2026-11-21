@@ -35,6 +35,7 @@ Scopes indicate the area of the codebase affected:
 - `docker`: Docker-related tools
 - `zsh`: Zsh shell configuration
 - `git`: Git configuration
+- `neovim`: Neovim configuration
 - `readme`: README documentation
 - `global`: Repository-wide changes not specific to any one area
 
