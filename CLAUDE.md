@@ -29,7 +29,7 @@ command needs `--impure`.
 - Apply it to the machine: `home-manager switch --impure` (alias `hm-switch`).
   This changes the user's live environment; ask before running it.
 - CI builds the same activation package on macOS and Linux for every push and
-  pull request to `main`. A scheduled job updates `flake.lock` daily.
+  pull request to `main`. A scheduled job updates `flake.lock` weekly.
 
 ## Conventions
 
