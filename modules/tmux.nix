@@ -5,6 +5,7 @@
     prefix = "C-a";
     mouse = true;
     keyMode = "vi";
+    focusEvents = true;
 
     extraConfig = ''
       # Vim-style pane navigation
